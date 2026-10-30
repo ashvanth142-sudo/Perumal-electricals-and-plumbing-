@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Shop Name</title>
+<meta name="description" content="Electrical, plumbing and hardware store. Call, WhatsApp or walk in.">
+<style>
+:root{--bg:#0a0d14;--line:rgba(255,255,255,.1);--text:#eef1f6;--muted:#a3adbf;--orange:#ff9d2e;--cyan:#5cc8f5;--green:#25d366}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,"Noto Sans Tamil","Latha",sans-serif;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px}
+a{color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:0;z-index:20;background:rgba(10,13,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:10px;padding:10px 0}
+.logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--orange),var(--cyan));display:grid;place-items:center;font-size:21px}
+.brand{flex:1;font-weight:800;font-size:.82rem;line-height:1.2;text-transform:uppercase}
+.brand small{display:block;color:var(--muted);font-weight:600;font-size:.68rem}
+.menu-btn{background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:10px;font-size:20px;cursor:pointer}
+nav{display:none;padding:0 0 12px}
+nav.open{display:block}
+nav a{display:block;padding:11px 4px;text-decoration:none;border-top:1px solid var(--line);color:var(--muted)}
+.tag{display:flex;align-items:center;gap:10px;color:var(--orange);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.tag::before{content:"";width:28px;height:2px;background:linear-gradient(90deg,var(--orange),var(--cyan))}
+h1,h2{line-height:1.1;margin:0 0 12px;font-weight:800;letter-spacing:-.02em}
+h1{font-size:2.4rem}h2{font-size:1.9rem}
+.g{background:linear-gradient(90deg,var(--orange),var(--cyan),var(--orange));background-size:200% 100%;animation:flow 5s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead,.sub{color:var(--muted)}
+.sub{margin:0 0 22px}
+.hero{padding:54px 0 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chips span{font-size:.8rem;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:14px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:1rem;transition:transform .2s}
+.btn:active{transform:scale(.96)}
+.btn-wa{background:linear-gradient(135deg,#22c55e,#0f8f73);color:#fff}
+.btn-call{background:linear-gradient(135deg,var(--orange),#ff6a2e);color:#1a1006}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--text)}
+.btn-wa::after,.btn-call::after{content:"";position:absolute;top:0;left:-60%;width:30%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);animation:shine 3.4s infinite}
+section{padding:46px 0 4px}
+.stack{display:grid;gap:14px}
+.c{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(6px);transition:transform .35s,border-color .35s,box-shadow .35s}
+.c:hover{transform:translateY(-4px);border-color:rgba(255,157,46,.55);box-shadow:0 12px 30px rgba(255,157,46,.12)}
+.ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,rgba(255,157,46,.28),rgba(92,200,245,.22))}
+.fc{padding:20px}
+.fc h3,.pb h3{margin:12px 0 4px;font-size:1.25rem}
+.fc p,.pb p{margin:0;color:var(--muted);font-size:.95rem}
+.brands-l{display:grid;gap:12px}
+@media(min-width:560px){.brands-l{grid-template-columns:1fr 1fr}}
+.bc{padding:24px 10px;text-align:center;font-weight:700;font-size:1.05rem}
+.bc small{display:block;color:var(--orange);font-size:.66rem;letter-spacing:.14em;margin-top:2px}
+.pc{overflow:hidden}
+.pimg{aspect-ratio:16/10;position:relative;display:grid;place-items:center;font-size:56px;background:linear-gradient(135deg,rgba(255,157,46,.25),rgba(92,200,245,.2))}
+.pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.pc:hover img{transform:scale(1.07)}
+.pb{padding:4px 18px 18px}
+.price{display:inline-block;margin:12px 0 0;padding:3px 10px;border-radius:20px;background:rgba(255,157,46,.15);color:var(--orange);font-weight:700;font-size:.85rem}
+.price.out{background:rgba(255,255,255,.08);color:var(--muted)}
+.pb .btn{width:100%;margin-top:14px;padding:12px}
+.wc{display:flex;gap:14px;padding:20px}
+.wc h3{margin:0 0 2px;font-size:1.15rem}.wc p{margin:0;color:var(--muted);font-size:.95rem}
+.rv{padding:20px}.rv .st{color:var(--orange);letter-spacing:3px}.rv p{margin:8px 0 14px}.rv b{display:block}.rv small{color:var(--muted)}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px;border:1px solid var(--line);transition:transform .4s}
+.gal img:hover{transform:scale(1.03)}
+.map{margin-top:16px;border-radius:20px;overflow:hidden;border:1px solid var(--line);height:300px}
+.map iframe{width:100%;height:100%;border:0}
+.shop{padding:22px}
+.shop h3{font-size:1.5rem;margin:0 0 6px;text-transform:uppercase;line-height:1.15}
+.row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.row .ic{flex:none;width:40px;height:40px;font-size:18px}
+.row b{display:block}.row span,.row a{color:var(--muted)}
+footer{padding:36px 0 110px;color:var(--muted);font-size:.85rem;text-align:center}
+.fab{position:fixed;right:14px;z-index:30;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:26px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.fab-wa{bottom:80px;background:var(--green);animation:ring 2s infinite}
+.fab-call{bottom:16px;background:var(--orange)}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:40;background:linear-gradient(90deg,var(--orange),var(--cyan))}
+.orb{position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.28;animation:drift 9s ease-in-out infinite}
+.o1{width:230px;height:230px;background:var(--orange);top:10%;right:-80px}
+.o2{width:270px;height:270px;background:var(--cyan);bottom:6%;left:-110px;animation-delay:-4s}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes flow{to{background-position:200% 0}}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+@keyframes shine{0%{transform:translateX(0) skewX(-20deg)}60%,100%{transform:translateX(550%) skewX(-20deg)}}
+.hero .tag,.hero h1,.hero .lead,.hero .chips,.hero .btns{opacity:0;animation:rise .85s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1{animation-delay:.12s}.hero .lead{animation-delay:.28s}.hero .chips{animation-delay:.38s}.hero .btns{animation-delay:.48s}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rev.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev,.hero .tag,.hero h1,.hero .lead,.hero .chips,.hero .btns{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<div id="prog"></div><div class="orb o1"></div><div class="orb o2"></div>
+
+<!-- ===================================================================
+     EDIT ONLY THIS BLOCK. Change only the words between the quotes "..."
+     Save the file, then upload it again. Nothing else needs touching.
+     =================================================================== -->
+<script>
+const SHOP = {
+  name:     "YOUR SHOP NAME",                 // first line of the logo
+  name2:    "& HARDWARES",                    // second line of the logo
+  tagline:  "Electricals • Plumbing • Hardware",
+  town:     "Your Town",
+  phone:    "+91 98765 43210",                // shown on the site
+  whatsapp: "919876543210",                   // 91 + 10 digits, no spaces, no + sign
+  address:  "Shop No., Street Name, Your Town, Tamil Nadu - 6XXXXX",
+  hours:    "Mon–Sat: 9:00 AM – 8:00 PM  |  Sunday: Closed",
+  maps:     "https://maps.google.com",        // your Google Maps share link
+  mapEmbed: "",                               // optional: map on the page (see steps)
+  sheet:    "",                               // optional: Google Sheet link for products
+  year:     "2026",
+
+  // Look and wording
+  logo:      "⚡",                              // small icon in the logo (any emoji)
+  color1:    "#ff9d2e",                         // main colour (orange)
+  color2:    "#5cc8f5",                         // second colour (blue)
+  headline1: "Everything for your",             // big heading: normal words
+  headline2: "electrical & plumbing",           // big heading: coloured words
+  headline3: "needs",                           // big heading: normal words
+  chips:     ["Genuine products", "Fair prices", "Bulk orders"],  // small tick labels
+
+  // Two big cards at the top: [icon, title, text]
+  about: [
+    ["⚡", "Electrical Products", "Wires, cables, switches, sockets, LED lights, MCBs, isolators, fans and more."],
+    ["🚰", "Plumbing & Pipes",    "Pipes, fittings, taps, tanks, western toilets and essential bathroom items."]
+  ],
+
+  // Brands: [brand name, product type in CAPITALS]. Add or delete lines.
+  brands: [
+    ["Brand One",   "CABLES"],
+    ["Brand Two",   "SWITCHES"],
+    ["Brand Three", "FANS"],
+    ["Brand Four",  "FITTINGS"],
+    ["Brand Five",  "PLUMBING"],
+    ["Brand Six",   "WATER TANKS"]
+  ],
+
+  // Products: [icon, title, description, price, in stock (Yes/No), photo file]
+  // Price, stock and photo can be "". Photo example: "photos/cable.jpg"
+  products: [
+    ["🔌", "Wires & Cables",     "Quality wiring solutions for homes, commercial spaces and installations.", "", "", ""],
+    ["💡", "LED Lights",          "Energy-saving LED bulbs, panel lights and outdoor flood lights.", "", "", ""],
+    ["🎛️", "MCB & Switchgear",    "Electrical protection items including MCBs, isolators and distribution boxes.", "", "", ""],
+    ["🔧", "Pipes & Fittings",    "Plumbing pipes, elbows, bends, connectors and fittings for homes and sites.", "", "", ""],
+    ["🚽", "Western Toilets",     "Bathroom sanitary products and western toilet options for home and commercial use.", "", "", ""],
+    ["🚿", "Taps & Showers",      "Taps, showers, health faucets and bathroom accessories.", "", "", ""]
+  ],
+
+  // Why choose us: [icon, title, text]
+  why: [
+    ["🏆", "Trusted for Years", "Reliable local shop known for everyday electrical and hardware needs."],
+    ["₹",  "Best Prices",       "Competitive market pricing with support for regular and bulk purchases."],
+    ["📦", "Bulk Order Support","Suitable for construction sites, contractors and large home projects."],
+    ["🏪", "All Under One Roof","Electrical, plumbing and hardware products in one convenient place."]
+  ],
+
+  // Customer reviews: ["Name", "Type", "Review"]. Use ONLY real reviews. Empty [] hides the section.
+  reviews: [],
+
+  // Shop photos for the gallery: file names. Empty [] hides the section.
+  // Example: ["photos/shop1.jpg", "photos/shop2.jpg"]
+  gallery: []
+};
+</script>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <div class="logo" id="logo"></div>
+      <div class="brand"><span id="h-name"></span><small id="h-name2"></small></div>
+      <button class="menu-btn" id="menu" aria-label="Menu">☰</button>
+    </div>
+    <nav id="nav">
+      <a href="#products">Products</a><a href="#brands">Brands</a><a href="#why">Why Us</a>
+      <a href="#reviews" id="n-rev">Reviews</a><a href="#gallery" id="n-gal">Gallery</a><a href="#visit">Visit Us</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="tag" id="h-tag"></div>
+    <h1><span id="h1a"></span> <span class="g" id="h1b"></span> <span id="h1c"></span></h1>
+    <p class="lead" id="h-lead"></p>
+    <div class="chips" id="chips"></div>
+    <div class="btns">
+      <a class="btn btn-call" id="b-call" href="#">📞 Call now</a>
+      <a class="btn btn-wa" id="b-wa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <section class="rev" style="padding-top:26px"><div class="stack" id="about-list"></div></section>
+
+  <section id="brands" class="rev">
+    <div class="tag">Featured brands</div>
+    <h2>Quality brands. <span class="g">Trusted products.</span></h2>
+    <p class="sub">We deal with reliable brands across electrical, plumbing and hardware categories to support lasting quality.</p>
+    <div class="brands-l" id="brands-list"></div>
+  </section>
+
+  <section id="products" class="rev">
+    <div class="tag">Our products</div>
+    <h2>Everything you need, <span class="g">in one place</span></h2>
+    <p class="sub">Tap Enquire to ask about price and availability on WhatsApp.</p>
+    <div class="stack" id="products-list"></div>
+  </section>
+
+  <section id="why" class="rev">
+    <div class="tag">Why choose us</div>
+    <h2>Local trust with <span class="g">professional service</span></h2>
+    <p class="sub">We help customers, electricians, plumbers and contractors find the right products quickly and confidently.</p>
+    <div class="stack" id="why-list"></div>
+  </section>
+
+  <section id="reviews" class="rev">
+    <div class="tag">Customer reviews</div>
+    <h2>Built on <span class="g">local customer trust</span></h2>
+    <div class="stack" id="rev-list"></div>
+  </section>
+
+  <section id="gallery" class="rev">
+    <div class="tag">Image gallery</div>
+    <h2>Shop, products &amp; <span class="g">real store feel</span></h2>
+    <div class="gal" id="gal-list"></div>
+  </section>
+
+  <section id="visit" class="rev">
+    <div class="tag">Visit our shop</div>
+    <h2>Call, WhatsApp or <span class="g">walk in today</span></h2>
+    <p class="sub">For product availability, price enquiry or bulk order support, contact us directly.</p>
+    <div class="c shop">
+      <h3 id="s-name"></h3>
+      <p class="lead" id="s-tag" style="margin:0 0 14px"></p>
+      <div class="row"><div class="ic">📍</div><div><b>Address</b><span id="s-addr"></span></div></div>
+      <div class="row"><div class="ic">🕘</div><div><b>Opening hours</b><span id="s-hours"></span></div></div>
+      <div class="row"><div class="ic">📞</div><div><b>Phone</b><a id="s-phone" href="#"></a></div></div>
+      <div class="btns"><a class="btn btn-ghost" id="s-map" href="#" target="_blank" rel="noopener">🗺️ Open in Google Maps</a></div>
+    </div>
+    <div class="map" id="map"></div>
+  </section>
+</main>
+
+<footer>© <span id="f-year"></span> <span id="f-name"></span>. All rights reserved.<br><span id="f-tag"></span></footer>
+
+<a class="fab fab-wa" id="fab-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<a class="fab fab-call" id="fab-call" href="#" aria-label="Call">📞</a>
+
+<script>
+// Builds the page from the settings block above. No need to edit below.
+const $ = id => document.getElementById(id);
+const esc = t => String(t == null ? "" : t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const wa = m => "https://wa.me/" + SHOP.whatsapp + "?text=" + encodeURIComponent(m);
+const tel = "tel:+" + SHOP.whatsapp;
+const full = (SHOP.name + " " + SHOP.name2).replace(/\s+/g, " ");
+
+document.title = full + " – " + SHOP.town;
+$("h-name").textContent = SHOP.name; $("h-name2").textContent = SHOP.name2;
+$("h-tag").textContent = "Trusted local store in " + SHOP.town;
+$("h-lead").textContent = SHOP.tagline + ". Wires, switches, lights, motors, pipes, taps and tools under one roof.";
+$("s-name").textContent = full; $("s-tag").textContent = "Your trusted local store for " + SHOP.tagline.toLowerCase() + ".";
+$("s-addr").textContent = SHOP.address; $("s-hours").textContent = SHOP.hours;
+$("s-phone").textContent = SHOP.phone; $("s-phone").href = tel; $("s-map").href = SHOP.maps;
+$("f-year").textContent = SHOP.year; $("f-name").textContent = full; $("f-tag").textContent = SHOP.tagline;
+$("b-call").href = $("fab-call").href = tel;
+$("b-wa").href = $("fab-wa").href = wa("Hello " + full + ", I need some details.");
+
+document.documentElement.style.setProperty("--orange", SHOP.color1);
+document.documentElement.style.setProperty("--cyan", SHOP.color2);
+$("logo").textContent = SHOP.logo;
+$("h1a").textContent = SHOP.headline1; $("h1b").textContent = SHOP.headline2; $("h1c").textContent = SHOP.headline3;
+$("chips").innerHTML = SHOP.chips.map(c => "<span>✔ " + esc(c) + "</span>").join("");
+$("about-list").innerHTML = SHOP.about.map(a => '<div class="c fc"><div class="ic">' + esc(a[0]) + '</div><h3>' + esc(a[1]) + '</h3><p>' + esc(a[2]) + '</p></div>').join("");
+$("brands-list").innerHTML = SHOP.brands.map(b => '<div class="c bc">' + esc(b[0]) + '<small>' + esc(b[1]) + '</small></div>').join("");
+$("why-list").innerHTML = SHOP.why.map(w => '<div class="c wc"><div class="ic">' + esc(w[0]) + '</div><div><h3>' + esc(w[1]) + '</h3><p>' + esc(w[2]) + '</p></div></div>').join("");
+$("rev-list").innerHTML = SHOP.reviews.map(r => '<div class="c rv"><div class="st">★★★★★</div><p>' + esc(r[2]) + '</p><b>' + esc(r[0]) + '</b><small>' + esc(r[1]) + '</small></div>').join("");
+$("gal-list").innerHTML = SHOP.gallery.map(g => '<img loading="lazy" alt="Shop photo" src="' + esc(g) + '" onerror="this.remove()">').join("");
+if (!SHOP.reviews.length) { $("reviews").remove(); $("n-rev").remove(); }
+if (!SHOP.gallery.length) { $("gallery").remove(); $("n-gal").remove(); }
+if (SHOP.mapEmbed) $("map").innerHTML = '<iframe loading="lazy" src="' + esc(SHOP.mapEmbed) + '"></iframe>'; else $("map").remove();
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in"); io.unobserve(e.target);
+  setTimeout(() => { e.target.classList.remove("rev", "in"); e.target.style.transitionDelay = ""; }, 1100);
+}), {threshold: .08});
+function reveal() {
+  document.querySelectorAll(".c:not(.seen),.gal img:not(.seen)").forEach((el, i) => { el.classList.add("rev", "seen"); el.style.transitionDelay = (i % 4) * .09 + "s"; io.observe(el); });
+  document.querySelectorAll("section.rev:not(.seen)").forEach(el => { el.classList.add("seen"); io.observe(el); });
+}
+
+function renderProducts(list) {
+  $("products-list").innerHTML = list.map(p => {
+    const out = /^(no|out|0|false)/i.test((p[4] || "").trim());
+    const price = out ? '<div class="price out">Out of stock</div>' : (p[3] ? '<div class="price">' + esc(p[3]) + '</div>' : "");
+    const img = p[5] ? '<img loading="lazy" alt="' + esc(p[1]) + '" src="' + esc(p[5]) + '" onerror="this.remove()">' : "";
+    return '<div class="c pc"><div class="pimg">' + esc(p[0]) + img + '</div><div class="pb"><h3>' + esc(p[1]) + '</h3><p>' + esc(p[2]) + '</p>' + price +
+      '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa("Hello, I want to enquire about " + p[1] + ".") + '">' + (out ? "Ask when available" : "Enquire on WhatsApp") + '</a></div></div>';
+  }).join("");
+  reveal();
+}
+renderProducts(SHOP.products);
+
+function parseCSV(t) {
+  const r = []; let row = [], c = "", q = false;
+  for (let i = 0; i < t.length; i++) {
+    const ch = t[i];
+    if (q) { if (ch == '"') { if (t[i+1] == '"') { c += '"'; i++; } else q = false; } else c += ch; }
+    else if (ch == '"') q = true;
+    else if (ch == ",") { row.push(c); c = ""; }
+    else if (ch == "\n") { row.push(c); r.push(row); row = []; c = ""; }
+    else if (ch != "\r") c += ch;
+  }
+  row.push(c); r.push(row); return r;
+}
+if (SHOP.sheet) fetch(SHOP.sheet).then(r => r.text()).then(t => {
+  const rows = parseCSV(t).slice(1).filter(r => r[1] && r[1].trim());
+  if (rows.length) renderProducts(rows.map(r => [r[0] || "🔹", r[1], r[2] || "", r[3] || "", r[4] || "", r[5] || ""]));
+}).catch(() => {});
+
+$("menu").onclick = () => $("nav").classList.toggle("open");
+document.querySelectorAll("nav a").forEach(a => a.onclick = () => $("nav").classList.remove("open"));
+addEventListener("scroll", () => { const h = document.documentElement; $("prog").style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%"; }, {passive: true});
+reveal();
+</script>
+</body>
+</html>
